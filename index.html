@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Ganga ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #ff5f9e, #ff8fb1);
+  overflow: hidden;
+  color: white;
+}
+
+/* Pages */
+.page {
+  display: none;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+}
+
+.page.active {
+  display: flex;
+  animation: fade 1.5s ease;
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.box {
+  background: rgba(0,0,0,0.25);
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 380px;
+}
+
+h1 {
+  margin-bottom: 15px;
+  font-size: 26px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  background: #ff2f6d;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: #ff0f57;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 20px;
+  animation: float 6s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes float {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-110vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+  <div class="box">
+    <h1>My Precious Ganga ❤️</h1>
+    <p>
+      Out of millions of people,  
+      God chose you to be part of my life.  
+      And that itself makes my life beautiful.
+    </p>
+    <button onclick="nextPage(2)">Tap to continue 💖</button>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+  <div class="box">
+    <p>
+      Every time I think of you,  
+      my heart feels calm… safe… happy.  
+      You are not just someone I like,  
+      you are someone I **care deeply for**.
+    </p>
+    <button onclick="nextPage(3)">Next 💕</button>
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+  <div class="box">
+    <p>
+      If I could make one wish,  
+      it would be to walk beside you,  
+      laugh with you,  
+      and grow together — always.
+    </p>
+    <button onclick="nextPage(4); playMusic()">One last thing 💍</button>
+  </div>
+</div>
+
+<!-- PAGE 4 (PROPOSAL) -->
+<div class="page" id="page4">
+  <div class="box">
+    <h1>Will you be mine? 💖</h1>
+    <p>
+      Not just today,  
+      but for all the little tomorrows ahead.
+    </p>
+    <button onclick="yes()">YES ❤️</button>
+    <br><br>
+    <button onclick="no()">NO 🙈</button>
+  </div>
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function nextPage(n) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page' + n).classList.add('active');
+}
+
+function playMusic() {
+  document.getElementById("music").play();
+}
+
+/* YES / NO actions */
+function yes() {
+  alert("You just made my world complete ❤️");
+}
+
+function no() {
+  alert("It's okay… my feelings remain pure 💔");
+}
+
+/* Hearts animation */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 20 + 15 + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
+}, 500);
+</script>
+
+</body>
+</html>
